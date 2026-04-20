@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocMerge — Fusionneur de PDF & Images</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- PDF-lib CDN -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-mark">◈</span>
+      <span class="logo-text">DocMerge</span>
+    </div>
+    <p class="tagline">Outils PDF gratuits — aucune donnée envoyée en ligne</p>
+  </header>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Vos documents,<br /><em>réunis en un instant.</em></h1>
+      <p class="hero-sub">Fusionnez des PDFs ou convertissez vos images en PDF directement dans votre navigateur.</p>
+    </section>
+
+    <!-- Tool Switcher -->
+    <div class="tool-switcher">
+      <button class="tool-btn active" data-tool="merge" id="btn-merge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6M9 8h6M9 16h4M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+        Fusionner des PDFs
+      </button>
+      <button class="tool-btn" data-tool="convert" id="btn-convert">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Images → PDF
+      </button>
+    </div>
+
+    <!-- ───────── MERGE TOOL ───────── -->
+    <section class="tool-panel active" id="panel-merge">
+
+      <div class="drop-zone" id="drop-merge">
+        <div class="drop-inner">
+          <div class="drop-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M24 32V16M17 23l7-7 7 7"/>
+              <rect x="6" y="6" width="36" height="36" rx="4"/>
+            </svg>
+          </div>
+          <p class="drop-title">Déposez vos fichiers PDF ici</p>
+          <p class="drop-hint">ou <label class="file-link" for="input-merge">parcourez vos fichiers</label></p>
+          <input type="file" id="input-merge" accept="application/pdf" multiple hidden />
+        </div>
+      </div>
+
+      <!-- Preview list -->
+      <div class="file-list" id="list-merge"></div>
+
+      <div class="action-row" id="action-merge" style="display:none">
+        <div class="file-count" id="count-merge"></div>
+        <button class="btn-primary" id="do-merge">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 9l6-6 6 6M10 3v12M4 17h12"/></svg>
+          Fusionner &amp; Télécharger
+        </button>
+      </div>
+
+      <div class="progress-wrap" id="progress-merge" style="display:none">
+        <div class="progress-bar"><div class="progress-fill" id="fill-merge"></div></div>
+        <span class="progress-label" id="label-merge">Traitement…</span>
+      </div>
+
+    </section>
+
+    <!-- ───────── CONVERT TOOL ───────── -->
+    <section class="tool-panel" id="panel-convert">
+
+      <div class="drop-zone" id="drop-convert">
+        <div class="drop-inner">
+          <div class="drop-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="6" y="6" width="36" height="36" rx="4"/>
+              <circle cx="17" cy="18" r="3"/>
+              <path d="M6 36l10-10 7 7 5-5 8 8"/>
+            </svg>
+          </div>
+          <p class="drop-title">Déposez vos images ici</p>
+          <p class="drop-hint">JPG, JPEG acceptés — <label class="file-link" for="input-convert">parcourir</label></p>
+          <input type="file" id="input-convert" accept=".jpg,.jpeg,image/jpeg" multiple hidden />
+        </div>
+      </div>
+
+      <!-- Preview list -->
+      <div class="file-list" id="list-convert"></div>
+
+      <div class="action-row" id="action-convert" style="display:none">
+        <div class="file-count" id="count-convert"></div>
+        <button class="btn-primary" id="do-convert">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 9l6-6 6 6M10 3v12M4 17h12"/></svg>
+          Convertir en PDF
+        </button>
+      </div>
+
+      <div class="progress-wrap" id="progress-convert" style="display:none">
+        <div class="progress-bar"><div class="progress-fill" id="fill-convert"></div></div>
+        <span class="progress-label" id="label-convert">Traitement…</span>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>100% local — vos fichiers ne quittent jamais votre appareil.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
